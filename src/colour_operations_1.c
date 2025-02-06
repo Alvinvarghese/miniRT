@@ -1,4 +1,19 @@
-#include "elements.h"
+#include "../includes/elements.h"
+
+/* 
+	**** CREATE COLOUR ****
+ */
+
+t_colour	create_color(float r, float g, float b)
+{
+	t_colour	c;
+
+	c.r = r;
+	c.g = g;
+	c.b = b;
+	return (c);
+}
+
 
 t_colour	add_color(t_colour c1, t_colour c2)
 {

@@ -1,9 +1,9 @@
-#include "elements.h"
+#include "../includes/elements.h"
 
 /* 
 	Intializing the canvas to black color(0,0,0)
 
-	for-loop is doing the intialization to black
+	while-loop is doing the intialization to black
  */
 
 t_canvas	create_canvas(int width, int height)
@@ -24,6 +24,7 @@ t_canvas	create_canvas(int width, int height)
 		canvas.pixels[i].b = 0.0f;
 		i++;
 	}
+	return (canvas);
 }
 
 // index = y * canvas->width + x; ==> converting (x,y) to 1D index
