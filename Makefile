@@ -35,7 +35,7 @@ SRCS =	src/minirt.c \
 		src/matrices/matrix_determinant.c \
 
 		src/Light_and_Shading/light_n_shading_operations.c \
-
+		src/Light_and_Shading/phong_reflection_model.c \
 
 OBJS = $(SRCS:src/%.c=$(OBJDIR)/%.o)
 

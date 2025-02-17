@@ -65,6 +65,32 @@ typedef struct s_ray
 	t_vector	direction;
 }				ray;
 
+typedef struct	s_point_light
+{
+	t_point		position;
+	t_colour	intensity;
+}				t_point_light;
+
+typedef struct	material
+{
+	t_colour	colour;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+}				t_material;
+
+typedef struct	s_sphere
+{
+	t_point		center;
+	double		radius;
+	t_material	material;
+}				t_sphere;
+
+
+
+
+
 t_tuple		addition(t_tuple, t_tuple);
 t_tuple		subtraction(t_tuple, t_tuple);
 t_canvas	create_canvas(int width, int height);

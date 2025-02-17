@@ -61,7 +61,7 @@ double	dot_product(t_tuple a, t_tuple b)
 	p.y = a.y * b.y;
 	p.z = a.z * b.z;
 	p.w = a.w * b.w;
-	return (p.x + p.y + p.z);
+	return (p.x + p.y + p.z + p.w);
 }
 
 /* 
