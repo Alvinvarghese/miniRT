@@ -18,7 +18,7 @@ t_tuple	addition(t_tuple p1, t_tuple p2)
 
 	p.x = p1.x + p2.x;
 	p.y = p1.y + p2.y;
-	p.z = p1.z + p2.y;
+	p.z = p1.z + p2.z;
 	p.w = p1.w + p2.w;
 	return (p);
 }
@@ -29,6 +29,7 @@ t_tuple	addition(t_tuple p1, t_tuple p2)
 a point (w = 1)
 a vector (w = 0)
 
+a point - a point = a vector
 a point - a vector = a vector
 a vector - a vector = a vector
 
@@ -41,7 +42,7 @@ t_tuple	subtraction(t_tuple p1, t_tuple p2)
 
 	p.x = p1.x - p2.x;
 	p.y = p1.y - p2.y;
-	p.z = p1.z - p2.y;
+	p.z = p1.z - p2.z;
 	p.w = p1.w - p2.w;
 	return (p);
 }
@@ -55,7 +56,7 @@ t_tuple	negation(t_tuple a)
 	return (a);
 }
 
-t_tuple	multiplication(t_tuple a, double scalar)
+t_tuple	scalar_multiply(t_tuple a, double scalar)
 {
 	a.x *= scalar;
 	a.y *= scalar;

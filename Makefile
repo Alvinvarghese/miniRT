@@ -15,7 +15,7 @@ MLX_LIB = $(MLX_PATH)/libmlx.a
 OBJDIR = obj
 
 SRCS = src/minirt.c src/color_opn_canvas.c src/colour_operations_1.c \
-src/free_canvas.c src/tuple_operations_1.c src/tuple_operations_2.c\
+src/freeup_memory.c src/tuple_operations_1.c src/tuple_operations_2.c\
 
 OBJS = $(SRCS:src/%.c=$(OBJDIR)/%.o)
 

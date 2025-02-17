@@ -1,4 +1,4 @@
-#include "elements.h"
+#include "../includes/elements.h"
 
 /* 
 
@@ -8,6 +8,7 @@
 	By giving the size this fn will create a size x size matrix.
 	eg: size = 3 ==> then a matrix of 3 x 3
 
+	Intializing it to zero as default;
  */
 
 t_matrix	create_matrix(int size)
@@ -34,6 +35,13 @@ t_matrix	create_matrix(int size)
 			matrix.mtrx = NULL;
 			return (matrix);
 		} */
+
+		j = 0;
+		while (j < size)
+		{
+			matrix.mtrx[i][j] = 0.0;
+			j++;
+		}
 		i++;
 	}
 	return (matrix);
@@ -116,42 +124,33 @@ double	cofactor(t_matrix *matrix, int row, int col)
 	// else, allocate space for the inverse matrix
 	// Compute the cofactor of (row, col)
 	// Store transposed element: M2[col][row] = c / det
+	// Matrix is not invertible if det = 0, then create return (create_matrix(0)); 
+
  */
 
-t_matrix inverse(t_matrix *M)
+t_matrix	inverse(t_matrix *M)
 {
-    double		det;
-	 double		c;
-	int			size;
+	double		det;
+	double		c;
 	int			row;
 	int			col;
-	t_matrix	M2;
+	t_matrix	m2;
 
-    det = determinant(M);
-
-    if (det == 0)
-    {
-        printf("Matrix is not invertible.\n");
-        return (create_matrix(0));
-    }
-
-    size = M->size;
-    M2 = create_matrix(size);
-
-    row = 0;
-    while (row < size)
-    {
-        col = 0;
-        while (col < size)
-        {
-            c = cofactor(M, row, col);
-
-            M2.mtrx[col][row] = c / det;
-
-            col++;
-        }
-        row++;
-    }
-
-    return (M2);
+	det = determinant(M);
+	if (det == 0)
+		return (create_matrix(0));
+	m2 = create_matrix(M->size);
+	row = 0;
+	while (row < M->size)
+	{
+		col = 0;
+		while (col < M->size)
+		{
+			c = cofactor(M, row, col);
+			m2.mtrx[col][row] = c / det;
+			col++;
+		}
+		row++;
+	}
+	return (m2);
 }

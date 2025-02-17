@@ -15,7 +15,7 @@ double	magnitude(t_tuple p)
 {
 	double	magnitude_v;
 
-	magnitude_v = sqrt (p.x * p.x + p.y * p.y + p.z * p.z + p.w * p.w);
+	magnitude_v = sqrt ((p.x * p.x) + (p.y * p.y) + (p.z * p.z) + (p.w * p.w));
 	return (magnitude_v);
 }
 
