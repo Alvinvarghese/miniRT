@@ -45,14 +45,14 @@ t_vector	normal_at(t_sphere *sphere, t_point world_point)
 
 
 	inv_transform = inverse(&sphere->transform);
-	object_point = multiply_matrix_tuple(inv_transform, world_point);
+	object_point = matrix_multiply_tuple(inv_transform, world_point);
 
 
 	object_normal = subtraction(object_point, create_point(0, 0, 0));
 
 
 	inv_transpose = transpose(inv_transform);
-	world_normal = multiply_matrix_tuple(inv_transpose, object_normal);
+	world_normal = matrix_multiply_tuple(inv_transpose, object_normal);
 
 
 	world_normal.w = 0.0;
