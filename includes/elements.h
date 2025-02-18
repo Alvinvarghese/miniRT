@@ -1,38 +1,13 @@
 #include <math.h>
+#include <mlx.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-/*
-Structure to represent Tuples, Points & Vectors 
- */
-typedef struct s_tuples
-{
-	double		x;
-	double		y;
-	double		z;
-	double		w;
-}				t_tuple;
+#include "tuples.h"
+#include "matrix.h"
+#include "light_n_color.h"
+#include "free.h"
 
-/*
-Structure to represent Colour spectrum 
- */
-typedef struct s_colours
-{
-	float		r;
-	float		g;
-	float		b;
-}				t_colour;
-
-/* 
-	A canvas is just a rectangular grid of pixels
-
-	*pixels --> Array storing pixel colors
- */
-typedef struct s_canvas
-{
-	int			width;
-	int			height;
-	t_colour	*pixels;
-}				t_canvas;
 
 
 
@@ -47,40 +22,18 @@ typedef struct s_image
 	int			size_line;
 	int			endian;
 }				t_image;
-/* 
-
- */
-
-typedef struct s_matrix
-{
-	double	**mtrx;
-	int		size;
-}				t_matrix;
 
 typedef t_tuple	t_point;
 typedef t_tuple	t_vector;
+
 typedef struct s_ray
 {
 	t_point		origin;
 	t_vector	direction;
-}				ray;
+}				t_ray;
 
-typedef struct	s_point_light
-{
-	t_point		position;
-	t_colour	intensity;
-}				t_point_light;
 
-typedef struct	material
-{
-	t_colour	colour;
-	double		ambient;
-	double		diffuse;
-	double		specular;
-	double		shininess;
-}				t_material;
-
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_point		center;
 	double		radius;
@@ -88,11 +41,34 @@ typedef struct	s_sphere
 }				t_sphere;
 
 
+/*			rendering		*/
+int				close_window(void *param);
+int				key_hook(int keycode, void *param);
+void			render_canvas_to_image(t_canvas *canvas, t_image *img,
+					void *mlx);
+void			initialize_and_render(void *mlx, void *win);
+
+void			*initialize_mlx(void);
+void			*create_window(void *mlx, int width, int height, char *title);
+void			setup_mlx_hooks_and_loop(void *mlx, void *win);
 
 
+/*			ray				*/
+t_point			create_point(double x, double y, double z);
+t_vector		create_vector(double x, double y, double z);
+t_point			add_vector_to_point(t_point p, t_vector v);
+t_vector		multiple_vector(t_vector v, double scalar);
+t_point			position(t_ray ray, double t);
+double			dot_product(t_vector a, t_vector b);
+t_vector		subtract(t_point a, t_point b);
+t_vector		normalize(t_vector v);
 
-t_tuple		addition(t_tuple, t_tuple);
-t_tuple		subtraction(t_tuple, t_tuple);
-t_canvas	create_canvas(int width, int height);
-void		write_pixel(t_canvas *canvas, int x, int y, t_colour color);
-t_colour	create_color(float r, float g, float b);
+/*			rendering		*/
+int				close_window(void *param);
+int				key_hook(int keycode, void *param);
+void			render_canvas_to_image(t_canvas *canvas, t_image *img,
+					void *mlx);
+void			initialize_and_render(void *mlx, void *win);
+void			*initialize_mlx(void);
+void			*create_window(void *mlx, int width, int height, char *title);
+void			setup_mlx_hooks_and_loop(void *mlx, void *win);
